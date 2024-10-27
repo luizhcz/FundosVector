@@ -1,6 +1,6 @@
 # FundsVector
 
-![FundsVector Logo](./assets/fundsvector.png)
+![FundsVector Logo](./assets/FundosVectorLite.png)
 
 ## Problema
 

@@ -1,6 +1,6 @@
 # FundsVector
 
-![FundsVector Logo](./assets/FundosVectorLite.png)
+![FundsVector Logo](./assets/fundsvector.png)
 
 ## Problema
 
@@ -66,23 +66,20 @@ Usamos ui generativa para criar interfaces conversacionais ricas,transformers pa
 
 # Arquitetura 
 
-![Arquitetura](./assets/arquitetura.png)
+![Arquitetura](./assets/FundosVectorLite.png)
 
 ## Scaffold
 
 ```
 src/
-├── CrewAi/
 ├── Libraries/
-├── carga-chunk-text/
-├── carga-delete-folder/
-├── carga-download-file/
-├── carga-embed-flow/
-├── carga-extract-llama/
-├── carga-insert-vector/
-├── carga-upload-cloud/
-├── fila-gerenciador/
-└── verba/
+├── load-chunk-text/
+├── load-download-file/
+├── load-embed-flow/
+├── load-extract-llama/
+├── load-insert-vector/
+├── load-upload-cloud/
+├── queue-management/
 ```
 
 ## Serviços
@@ -100,11 +97,6 @@ Extração do conteúdo do PDF e conversão em markdown utilizando a API Parser 
 
 Upload do conteúdo em markdown para um bucket no Google Cloud Platform (GCP). O armazenamento em nuvem garante que os dados estejam acessíveis e seguros para os processos subsequentes.
 
-### delete-folder
-
-Exclui a pasta temporária que armazenava o PDF e seus arquivos relacionados após a conclusão do upload, liberando espaço e mantendo a organização do sistema.
-
-
 ### Queue rabbitmq
 
 Serviço de mensageria que orquestra o fluxo de dados entre os componentes do sistema. As mensagens são enfileiradas para os seguintes processos:
@@ -118,7 +110,6 @@ Faz o download do conteúdo markdown do PDF a partir do bucket no GCP, segmenta 
 
 Recebe cada chunk e gera embeddings utilizando modelos avançados como o GPT-4. Os embeddings capturam a semântica dos textos, permitindo buscas vetoriais eficazes. Em seguida, envia os embeddings para a fila `insert-vector`.
 
-
 #### insert vector
 Insere os embeddings no banco de dados vetorial Weaviate. Este serviço finaliza o pipeline de processamento, tornando os dados prontos para serem utilizados pelo sistema RAG em consultas de linguagem natural.
 
@@ -127,6 +118,3 @@ Camada responsável por fornecer uma interface gráfica otimizada para consultar
 
 #### Captura de tela do MVP
 ![FundsVector Logo](./assets/MVP.png)
-
-## Próximos Passos
-Como parte da evolução contínua da nossa solução, planejamos testar a GraphRAG da Microsoft. A GraphRAG combina grafos de conhecimento com modelos de linguagem avançados para melhorar a recuperação de informações e a geração de respostas contextualizadas. A documentação está disponível em https://microsoft.github.io/graphrag/. Este teste nos permitirá avaliar como a integração de grafos pode aprimorar ainda mais a precisão e a relevância das respostas fornecidas aos usuários.
